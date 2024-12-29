@@ -1,0 +1,37 @@
+{
+    "name": "10th Class",
+    "short_name": "Study",
+    "start_url": "Index.html",
+    "offline": true,
+    "display": "standalone",
+    "background_color": "#0f0e17",
+    "theme_color": "#232946",
+    "icons": [
+      {
+        "src": "blackturm.jpg",
+        "sizes": "192x192",
+        "type": "image/jpg"
+      },
+      {
+        "src": "blackturm.jpg",
+        "sizes": "512x512",
+        "type": "image/jpg"
+      }
+    ],
+    "files": [
+      "styles.css",
+      "app.js",
+      "Index.html",
+      "Sw.js",
+      "Login/login.html",
+      "Login/login.js",
+      "Login/style.css",
+      "Login/study.jpeg",
+      "blackturm.jpg",
+      "Notes html/ગણિતNotes.html",
+      "Video html/ગણિતVideos.html",
+      "https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lexend:wght@100..900&display=swap&font-display=swap"
+    ],
+    "fallback": []
+  }
+  
