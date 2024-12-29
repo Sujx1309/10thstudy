@@ -1,13 +1,13 @@
 $(document).ready(() => {
     // Check if user is already logged in
     if (localStorage.getItem('loggedInUser')) {
-        window.location.href = '../index.html'; // Redirect to main page if already logged in
+        window.location.href = '../Index.html'; // Redirect to main page if already logged in
     }
 
     // Function to log in a user
     const loginUser = (user) => {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
-        window.location.href = '../index.html'; // Redirect to main page after login
+        window.location.href = '../Index.html'; // Redirect to main page after login
     };
 
     // Handle login form submission
