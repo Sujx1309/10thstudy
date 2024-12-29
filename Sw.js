@@ -14,7 +14,7 @@ self.addEventListener('install', (event) => {
             'Login/login.js',
             'Login/style.css',
             'Login/study.jpeg',
-            "blackturm.jpg",
+            "blackturm.png",
             'Notes html/ગણિતNotes.html',
             'Video html/ગણિતVideos.html',
             'https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lexend:wght@100..900&display=swap&font-display=swap'
