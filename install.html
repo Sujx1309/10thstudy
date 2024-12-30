@@ -66,6 +66,30 @@
     <footer class="footer">
         <p>&copy; 2024 10th study. All rights reserved.</p>
     </footer>
+<script>
+        setInterval(() => {
+  // Check if 'eruda' is loaded
+  if (typeof eruda !== "undefined") {
+    window.location.reload(); // Reload the page to reset
+  }
+}, 100);
+
+            // Disable Right-Click
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+    // Disable Inspect Element (F12, Ctrl+Shift+I, etc.)
+    document.addEventListener("keydown", (e) => {
+    if (
+        e.key === "F12" || // F12
+        (e.ctrlKey && e.shiftKey && e.key === "I") || // Ctrl+Shift+I
+        (e.ctrlKey && e.key === "u") || // Ctrl+U (View Source)
+        (e.ctrlKey && e.shiftKey && e.key === "J") // Ctrl+Shift+J
+    ) {
+        e.preventDefault();
+    }
+    });
+
+        </script>
 </body>
 
 </html>
