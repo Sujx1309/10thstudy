@@ -297,7 +297,6 @@ class BlackTurmApp {
 
     handleNavBookClick() {
         if (!this.loggedInUser || this.loggedInUser.role === 'guest') {
-            alert('Please log in to access the books section.');
             return;
         }
 
@@ -312,7 +311,6 @@ class BlackTurmApp {
 
     checkLoggedInUser() {
         if (!this.loggedInUser) {
-            alert('You are not logged in. Redirecting to login...');
             window.location.href = ROUTES.LOGIN;
             return;
         }
