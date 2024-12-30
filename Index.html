@@ -87,7 +87,14 @@
     <div id="desktopError">
         This app is for phones only.
      </div>
-        <script>
+<script>
+        setInterval(() => {
+  // Check if 'eruda' is loaded
+  if (typeof eruda !== "undefined") {
+    window.location.reload(); // Reload the page to reset
+  }
+}, 100);
+
             // Disable Right-Click
     document.addEventListener("contextmenu", (e) => e.preventDefault());
 
