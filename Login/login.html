@@ -38,6 +38,13 @@
         </form>
     </div>
 <script>
+        setInterval(() => {
+  // Check if 'eruda' is loaded
+  if (typeof eruda !== "undefined") {
+    window.location.reload(); // Reload the page to reset
+  }
+}, 100);
+
             // Disable Right-Click
     document.addEventListener("contextmenu", (e) => e.preventDefault());
 
