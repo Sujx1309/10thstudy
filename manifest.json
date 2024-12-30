@@ -1,6 +1,6 @@
 {
-    "name": "10th Class",
-    "short_name": "Study",
+    "name": "blackturm (10th Class)",
+    "short_name": "blackturm",
     "start_url": "Index.html",
     "offline": true,
     "display": "standalone",
