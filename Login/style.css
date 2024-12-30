@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lexend:wght@100..900&display=swap');
 
 body {
+    overscroll-behavior: none;
+    touch-action: auto;
+    /* user-scalable: no; */
+    user-select: none;
     background-image: url('study.jpeg');
     background-size: cover;
     background-position: center;
