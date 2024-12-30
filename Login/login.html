@@ -37,7 +37,23 @@
             <button type="button" id="guest-login" class="btn btn-secondary btn-block">Login as Guest</button>
         </form>
     </div>
+<script>
+            // Disable Right-Click
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
 
+    // Disable Inspect Element (F12, Ctrl+Shift+I, etc.)
+    document.addEventListener("keydown", (e) => {
+    if (
+        e.key === "F12" || // F12
+        (e.ctrlKey && e.shiftKey && e.key === "I") || // Ctrl+Shift+I
+        (e.ctrlKey && e.key === "u") || // Ctrl+U (View Source)
+        (e.ctrlKey && e.shiftKey && e.key === "J") // Ctrl+Shift+J
+    ) {
+        e.preventDefault();
+    }
+    });
+
+        </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="login.js"></script>
