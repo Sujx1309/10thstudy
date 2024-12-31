@@ -8,14 +8,9 @@
     "theme_color": "#232946",
     "icons": [
       {
-        "src": "blackturm.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "blackturm.png",
-        "sizes": "512x512",
-        "type": "image/png"
+        "src": "blackturm1.svg",
+        "sizes": "any",
+        "type": "image/svg+xml"
       }
     ],
     "files": [
