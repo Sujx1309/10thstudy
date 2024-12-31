@@ -11,6 +11,16 @@
         "src": "blackturm1.svg",
         "sizes": "any",
         "type": "image/svg+xml"
+      },
+      {
+        "scr": "blackturm.png",
+        "sizes": "192×192",
+        "type": "image/png"
+      },
+      {
+        "scr": "blackturm.png",
+        "sizes": "512×512",
+        "type": "image/png"
       }
     ],
     "files": [
