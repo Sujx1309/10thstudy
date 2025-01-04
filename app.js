@@ -3,7 +3,8 @@ const ROUTES = {
     LOGIN: 'Login/login.html',
     CONTENT_PATHS: {
         NOTES: 'Notes html',
-        VIDEOS: 'Video html'
+        VIDEOS: 'Video html',
+        IMP: 'IMP html'
     }
 };
 
