@@ -203,7 +203,7 @@ class BlackTurmApp {
         const subItems = [
             { name: 'Notes', file: `${ROUTES.CONTENT_PATHS.NOTES}/${subject.toLowerCase()}Notes.html` },
             { name: 'Videos', file: `${ROUTES.CONTENT_PATHS.VIDEOS}/${subject.toLowerCase()}Videos.html` },
-            { name: 'IMP', file: `${ROUTES.CONTENT_PATHS.NOTES}/${subject.toLowerCase()}IMP.html` }
+            { name: 'IMP', file: `${ROUTES.CONTENT_PATHS.IMP}/${subject.toLowerCase()}IMP.html` }
         ];
 
         this.elements.content.empty()
