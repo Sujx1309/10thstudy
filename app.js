@@ -264,7 +264,7 @@ class BlackTurmApp {
                 playlist = `https://www.youtube.com/embed/videoseries?list=${playlistId}`;
             }
     
-            const iframeSrc = `${playlist}&modestbranding=1&showinfo=0&controls=1&rel=0`;
+            const iframeSrc = `${playlist}&modestbranding=0&showinfo=0&controls=1&rel=0`;
     
             // Embed the iframe for a single playlist
             this.elements.content.html(
@@ -273,8 +273,9 @@ class BlackTurmApp {
                     height="200px" 
                     src="${iframeSrc}" 
                     frameborder="2" 
-                    allow="autoplay; encrypted-media" 
-                    allowfullscreen>
+                    allow="encrypted-media" 
+                    allowfullscreen
+                    style="border-radius: 10px; border: 2px solid #ccc;">
                 </iframe>`
             );
         }
