@@ -239,18 +239,19 @@ class BlackTurmApp {
                 }
     
                 // Construct iframe URL with parameters
-                const iframeSrc = `${url}&modestbranding=1&showinfo=0&controls=1&rel=0`;
+                const iframeSrc = `${url}&modestbranding=0&showinfo=0&controls=1&rel=0`;
     
                 // Embed the iframe for each playlist separately (appending only once)
                 this.elements.content.append(
                     `<iframe 
-                        width="100%" 
-                        height="200px" 
-                        src="${iframeSrc}" 
-                        frameborder="2" 
-                        allow="autoplay; encrypted-media" 
-                        allowfullscreen>
-                    </iframe>`
+                    width="100%" 
+                    height="200px" 
+                    src="${iframeSrc}" 
+                    frameborder="2" 
+                    allow="encrypted-media" 
+                    allowfullscreen
+                    style="border-radius: 10px; border: 2px solid #ccc;">
+                </iframe>`
                 );
             });
         } else {
