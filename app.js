@@ -23,7 +23,7 @@ const ONE_SHOT_SUBJECTS = [
     },
     { 
         name: 'વિજ્ઞાન OneShot', 
-        playlist: 'https://www.youtube.com/embed/videoseries?list=PLlv51909B3RYRRVCzjL3TZFO42SiZ8g-n'
+        playlist: 'https://www.youtube.com/embed/videoseries?si=-U9J3zxhIcjG-vHq&amp;list=PLlv51909B3RYVlIHYlyzku-2lFHvEamu9'
     },
     { 
         name: 'સામાજિક વિજ્ઞાન OneShot', 
