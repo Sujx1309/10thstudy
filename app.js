@@ -187,7 +187,7 @@ class BlackTurmApp {
             $('#loading-indicator').addClass('d-none');
             
             // Show error message in content area
-            this.elements.content.html('<p>Error loading content.</p>');
+            this.elements.content.html('<p>coming soon</p>');
         }
     }
     
