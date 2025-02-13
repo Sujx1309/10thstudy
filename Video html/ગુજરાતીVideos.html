@@ -1,14 +1,18 @@
     <script>
-        function changeVideo(clickedIframe) {
+        function changeVideo(videoId, thumbnailElement) {
             let mainVideo = document.getElementById("mainVideo");
 
-            // Extract the video ID from the clicked iframe's src
-            let clickedSrc = clickedIframe.src.split("?")[0]; // Remove existing parameters
-            let mainSrc = mainVideo.src.split("?")[0];
+            // Store current main video ID and extract its thumbnail
+            let currentVideoId = mainVideo.getAttribute("data-video-id");
+            let currentThumbnail = `https://img.youtube.com/vi/${currentVideoId}/hqdefault.jpg`;
 
-            // Swap video with autoplay
-            mainVideo.src = clickedSrc + "?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1";
-            clickedIframe.src = mainSrc + "?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1";
+            // Swap main video to clicked video and autoplay it
+            mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+            mainVideo.setAttribute("data-video-id", videoId); // Update main video ID
+
+            // Change the clicked thumbnail to the old main video thumbnail
+            thumbnailElement.src = currentThumbnail;
+            thumbnailElement.setAttribute("onclick", `changeVideo('${currentVideoId}', this)`);
         }
     </script>
 
@@ -17,34 +21,27 @@
     id="mainVideo"
     width="100%" 
     height="200" 
-    src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?playlist=_wWr5oLxU0Y&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+    src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+    data-video-id="_wWr5oLxU0Y"
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen
     style="border-radius: 10px; border: 2px solid #ccc; margin-bottom: 10px;">
 </iframe>
 
-<!-- Small Videos (Click to Convert) -->
+<!-- Small Video Thumbnails (Click to Convert) -->
 <div style="display: flex; gap: 10px;">
-    <iframe 
+    <img 
+        src="https://img.youtube.com/vi/F1Aa3avPNOI/hqdefault.jpg" 
         width="45%" 
         height="80" 
-        src="https://www.youtube.com/embed/F1Aa3avPNOI?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
         style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
-        onclick="changeVideo(this)">
-    </iframe>  
-
-    <iframe 
+        onclick="changeVideo('F1Aa3avPNOI', this)">
+    
+    <img 
+        src="https://img.youtube.com/vi/xjOTl32oq8o/hqdefault.jpg" 
         width="45%" 
         height="80" 
-        src="https://www.youtube.com/embed/xjOTl32oq8o?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
         style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
-        onclick="changeVideo(this)">
-    </iframe>  
+        onclick="changeVideo('xjOTl32oq8o', this)">
 </div>
