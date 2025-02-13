@@ -1,7 +1,10 @@
-    <script>
-        function changeVideo(newSrc,oldSrc) {
-            document.getElementById("mainVideo").src = newSrc;
-document.getElementById("smallVideo").src = oldSrc;
+  <script>
+        function changeVideo(clickedIframe) {
+            let mainVideo = document.getElementById("mainVideo");
+            let tempSrc = mainVideo.src;  // Store current main video src
+            
+            mainVideo.src = clickedIframe.src;  // Swap small video to main
+            clickedIframe.src = tempSrc; // Swap main video to small
         }
     </script>
 
@@ -17,10 +20,9 @@ document.getElementById("smallVideo").src = oldSrc;
     style="border-radius: 10px; border: 2px solid #ccc; margin-bottom: 10px;">
 </iframe>
 
-<!-- Small Video List (Click to Convert) -->
+<!-- Small Videos (Click to Convert) -->
 <div style="display: flex; gap: 10px;">
     <iframe 
-        id="smallVideo"
         width="45%" 
         height="80" 
         src="https://www.youtube.com/embed/ckvvnmTStDA?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
@@ -28,9 +30,17 @@ document.getElementById("smallVideo").src = oldSrc;
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
         style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
-        onclick="changeVideo('https://www.youtube.com/embed/ckvvnmTStDA?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1',
-
-'https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?playlist=_wWr5oLxU0Y&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1')">
+        onclick="changeVideo(this)">
     </iframe>  
-    <h6 style="margin: 0;">Gujarati | IMP જોડકાં જોડો</h6>
+
+    <iframe 
+        width="45%" 
+        height="80" 
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
+        onclick="changeVideo(this)">
+    </iframe>  
 </div>
