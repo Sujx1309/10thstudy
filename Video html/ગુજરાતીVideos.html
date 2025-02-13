@@ -1,6 +1,13 @@
-  <script>
+    <script>
+        const videoTitles = {
+            "_wWr5oLxU0Y": "Main Video Title",
+            "F1Aa3avPNOI": "First Video Title",
+            "xjOTl32oq8o": "Second Video Title"
+        };
+
         function changeVideo(videoId, thumbnailElement) {
             let mainVideo = document.getElementById("mainVideo");
+            let mainTitle = document.getElementById("mainVideoTitle");
 
             // Store current main video ID and generate its thumbnail
             let currentVideoId = mainVideo.getAttribute("data-video-id");
@@ -10,9 +17,13 @@
             mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
             mainVideo.setAttribute("data-video-id", videoId); // Update main video ID
 
+            // Update main video title
+            mainTitle.innerText = videoTitles[videoId];
+
             // Change the clicked image to the previous video thumbnail
             thumbnailElement.src = currentThumbnail;
             thumbnailElement.setAttribute("onclick", `changeVideo('${currentVideoId}', this)`);
+            thumbnailElement.nextElementSibling.innerText = videoTitles[currentVideoId]; // Update small video title
         }
 
         function playMainVideo() {
@@ -23,35 +34,75 @@
             mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
         }
     </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        .main-video {
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            width: 100%;
+        }
+        .video-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .small-video-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .small-video-container img {
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+        }
+        .small-video-container p {
+            margin: 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
 
-<!-- Main Video (Click to Play) -->
-<iframe 
-    id="mainVideo"
-    width="100%" 
-    height="200" 
-    src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
-    data-video-id="_wWr5oLxU0Y"
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen
-    style="border-radius: 10px; border: 2px solid #ccc; margin-bottom: 10px; cursor: pointer;"
-    onclick="playMainVideo()">
-</iframe>
+<div class="video-container">
+    <!-- Main Video (Click to Play) -->
+    <iframe 
+        id="mainVideo"
+        class="main-video"
+        height="200" 
+        src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+        data-video-id="_wWr5oLxU0Y"
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        onclick="playMainVideo()">
+    </iframe>
+    <p id="mainVideoTitle" class="video-title">Main Video Title</p>
 
-<!-- Small Video Thumbnails (Click to Swap) -->
-<div style="display: flex; gap: 10px;">
-    <img 
-        src="https://img.youtube.com/vi/F1Aa3avPNOI/hqdefault.jpg" 
-        width="45%" 
-        height="80" 
-        style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
-        onclick="changeVideo('F1Aa3avPNOI', this)">
-</div>
-<div style="display: flex; gap: 10px;">
- <img 
-        src="https://img.youtube.com/vi/xjOTl32oq8o/hqdefault.jpg" 
-        width="45%" 
-        height="80" 
-        style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
-        onclick="changeVideo('xjOTl32oq8o', this)">
+    <!-- Small Video Thumbnails (Click to Swap) -->
+    <div class="small-video-container">
+        <img 
+            src="https://img.youtube.com/vi/F1Aa3avPNOI/hqdefault.jpg" 
+            onclick="changeVideo('F1Aa3avPNOI', this)">
+        <p>First Video Title</p>
+    </div>
+
+    <div class="small-video-container">
+        <img 
+            src="https://img.youtube.com/vi/xjOTl32oq8o/hqdefault.jpg" 
+            onclick="changeVideo('xjOTl32oq8o', this)">
+        <p>Second Video Title</p>
+    </div>
 </div>
