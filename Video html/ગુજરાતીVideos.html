@@ -1,10 +1,14 @@
-  <script>
+    <script>
         function changeVideo(clickedIframe) {
             let mainVideo = document.getElementById("mainVideo");
-            let tempSrc = mainVideo.src;  // Store current main video src
-            
-            mainVideo.src = clickedIframe.src;  // Swap small video to main
-            clickedIframe.src = tempSrc; // Swap main video to small
+
+            // Extract the video ID from the clicked iframe's src
+            let clickedSrc = clickedIframe.src.split("?")[0]; // Remove existing parameters
+            let mainSrc = mainVideo.src.split("?")[0];
+
+            // Swap video with autoplay
+            mainVideo.src = clickedSrc + "?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1";
+            clickedIframe.src = mainSrc + "?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1";
         }
     </script>
 
@@ -22,23 +26,21 @@
 
 <!-- Small Videos (Click to Convert) -->
 <div style="display: flex; gap: 10px;">
-
     <iframe 
         width="45%" 
         height="80" 
-        src="https://www.youtube.com/embed/F1Aa3avPNOI?si=olq6lbgjqnHi_APB?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+        src="https://www.youtube.com/embed/F1Aa3avPNOI?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
         style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
         onclick="changeVideo(this)">
     </iframe>  
-</div>
-<div style="display: flex; gap: 10px;">
- <iframe 
+
+    <iframe 
         width="45%" 
         height="80" 
-        src="https://www.youtube.com/embed/xjOTl32oq8o?si=XLGnqtRMPQAUtxFV?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+        src="https://www.youtube.com/embed/xjOTl32oq8o?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
