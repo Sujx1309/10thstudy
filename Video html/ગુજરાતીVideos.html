@@ -1,38 +1,58 @@
-    <script>
-        const videoTitles = {
-            "_wWr5oLxU0Y": "Main Video Title",
-            "F1Aa3avPNOI": "First Video Title",
-            "xjOTl32oq8o": "Second Video Title"
-        };
+   <script>
+        async function fetchYouTubeTitle(videoId) {
+            try {
+                let response = await fetch(`https://www.youtube.com/watch?v=${videoId}`);
+                let text = await response.text();
+                
+                // Extract title from YouTube page HTML
+                let match = text.match(/<title>(.*?)<\/title>/);
+                if (match) {
+                    return match[1].replace(" - YouTube", "").trim(); // Remove ' - YouTube' from the title
+                }
+                return "Unknown Title";
+            } catch (error) {
+                console.error("Error fetching title:", error);
+                return "Error Loading Title";
+            }
+        }
+
+        async function loadVideoTitles() {
+            let videoIds = ["_wWr5oLxU0Y", "F1Aa3avPNOI", "xjOTl32oq8o"];
+            
+            for (let videoId of videoIds) {
+                let title = await fetchYouTubeTitle(videoId);
+                document.querySelector(`[data-video-id="${videoId}"]`).innerText = title;
+            }
+        }
 
         function changeVideo(videoId, thumbnailElement) {
             let mainVideo = document.getElementById("mainVideo");
             let mainTitle = document.getElementById("mainVideoTitle");
 
-            // Store current main video ID and generate its thumbnail
             let currentVideoId = mainVideo.getAttribute("data-video-id");
             let currentThumbnail = `https://img.youtube.com/vi/${currentVideoId}/hqdefault.jpg`;
 
-            // Swap the video in the iframe (but don't autoplay)
             mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
-            mainVideo.setAttribute("data-video-id", videoId); // Update main video ID
+            mainVideo.setAttribute("data-video-id", videoId);
 
-            // Update main video title
-            mainTitle.innerText = videoTitles[videoId];
+            // Update the main video title
+            document.getElementById(`title-${videoId}`).classList.add("bold-title");
+            document.getElementById(`title-${currentVideoId}`).classList.remove("bold-title");
 
-            // Change the clicked image to the previous video thumbnail
+            mainTitle.innerText = document.getElementById(`title-${videoId}`).innerText;
+
             thumbnailElement.src = currentThumbnail;
             thumbnailElement.setAttribute("onclick", `changeVideo('${currentVideoId}', this)`);
-            thumbnailElement.nextElementSibling.innerText = videoTitles[currentVideoId]; // Update small video title
         }
 
         function playMainVideo() {
             let mainVideo = document.getElementById("mainVideo");
             let videoId = mainVideo.getAttribute("data-video-id");
 
-            // Add autoplay by reloading the iframe
             mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
         }
+
+        window.onload = loadVideoTitles;
     </script>
     <style>
         body {
@@ -74,6 +94,10 @@
             font-size: 12px;
             font-weight: bold;
         }
+        .bold-title {
+            font-weight: bold;
+            color: #ff0000;
+        }
     </style>
 
 <div class="video-container">
@@ -89,20 +113,20 @@
         allowfullscreen
         onclick="playMainVideo()">
     </iframe>
-    <p id="mainVideoTitle" class="video-title">Main Video Title</p>
+    <p id="mainVideoTitle" class="video-title" data-video-id="_wWr5oLxU0Y">Loading...</p>
 
     <!-- Small Video Thumbnails (Click to Swap) -->
     <div class="small-video-container">
         <img 
             src="https://img.youtube.com/vi/F1Aa3avPNOI/hqdefault.jpg" 
             onclick="changeVideo('F1Aa3avPNOI', this)">
-        <p>First Video Title</p>
+        <p id="title-F1Aa3avPNOI" data-video-id="F1Aa3avPNOI">Loading...</p>
     </div>
 
     <div class="small-video-container">
         <img 
             src="https://img.youtube.com/vi/xjOTl32oq8o/hqdefault.jpg" 
             onclick="changeVideo('xjOTl32oq8o', this)">
-        <p>Second Video Title</p>
+        <p id="title-xjOTl32oq8o" data-video-id="xjOTl32oq8o">Loading...</p>
     </div>
 </div>
