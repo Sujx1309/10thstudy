@@ -36,15 +36,22 @@
     </div>
 
     <script>
-        document.getElementById("smallVideoThumbnail").addEventListener("click", function() {
-            let mainVideo = document.getElementById("mainVideo");
-            let smallVideoId = "ckvvnmTStDA"; // ID of the small video
-            let mainVideoId = mainVideo.src.split("/embed/")[1].split("?")[0]; // Get main video ID
+        let mainVideo = document.getElementById("mainVideo");
+        let thumbnail = document.getElementById("smallVideoThumbnail");
 
-            // Swap main video with small video
-            mainVideo.src = `https://www.youtube-nocookie.com/embed/${smallVideoId}?playlist=${smallVideoId}&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+        let smallVideoId = "ckvvnmTStDA"; // Small video ID
+        let mainVideoId = "_wWr5oLxU0Y"; // Main video ID
 
-            // Change small video to main video's thumbnail
-            document.getElementById("smallVideoThumbnail").src = `https://img.youtube.com/vi/${mainVideoId}/0.jpg`;
+        thumbnail.addEventListener("click", function() {
+            // Swap videos
+            let tempVideoId = mainVideoId;
+            mainVideoId = smallVideoId;
+            smallVideoId = tempVideoId;
+
+            // Update main video src
+            mainVideo.src = `https://www.youtube-nocookie.com/embed/${mainVideoId}?playlist=${mainVideoId}&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+
+            // Update small video thumbnail
+            thumbnail.src = `https://img.youtube.com/vi/${smallVideoId}/0.jpg`;
         });
     </script>
