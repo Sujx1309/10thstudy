@@ -1,35 +1,44 @@
-    <script>
+  <script>
         function changeVideo(videoId, thumbnailElement) {
             let mainVideo = document.getElementById("mainVideo");
 
-            // Store current main video ID and extract its thumbnail
+            // Store current main video ID and generate its thumbnail
             let currentVideoId = mainVideo.getAttribute("data-video-id");
             let currentThumbnail = `https://img.youtube.com/vi/${currentVideoId}/hqdefault.jpg`;
 
-            // Swap main video to clicked video and autoplay it
-            mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+            // Swap the video in the iframe (but don't autoplay)
+            mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
             mainVideo.setAttribute("data-video-id", videoId); // Update main video ID
 
-            // Change the clicked thumbnail to the old main video thumbnail
+            // Change the clicked image to the previous video thumbnail
             thumbnailElement.src = currentThumbnail;
             thumbnailElement.setAttribute("onclick", `changeVideo('${currentVideoId}', this)`);
         }
+
+        function playMainVideo() {
+            let mainVideo = document.getElementById("mainVideo");
+            let videoId = mainVideo.getAttribute("data-video-id");
+
+            // Add autoplay by reloading the iframe
+            mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+        }
     </script>
 
-<!-- Main Video -->
+<!-- Main Video (Click to Play) -->
 <iframe 
     id="mainVideo"
     width="100%" 
     height="200" 
-    src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+    src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
     data-video-id="_wWr5oLxU0Y"
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen
-    style="border-radius: 10px; border: 2px solid #ccc; margin-bottom: 10px;">
+    style="border-radius: 10px; border: 2px solid #ccc; margin-bottom: 10px; cursor: pointer;"
+    onclick="playMainVideo()">
 </iframe>
 
-<!-- Small Video Thumbnails (Click to Convert) -->
+<!-- Small Video Thumbnails (Click to Swap) -->
 <div style="display: flex; gap: 10px;">
     <img 
         src="https://img.youtube.com/vi/F1Aa3avPNOI/hqdefault.jpg" 
