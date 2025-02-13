@@ -1,6 +1,7 @@
     <script>
-        function changeVideo(newSrc) {
+        function changeVideo(newSrc,oldSrc) {
             document.getElementById("mainVideo").src = newSrc;
+document.getElementById("smallVideo").src = oldSrc;
         }
     </script>
 
@@ -19,6 +20,7 @@
 <!-- Small Video List (Click to Convert) -->
 <div style="display: flex; gap: 10px;">
     <iframe 
+        id="smallVideo"
         width="45%" 
         height="80" 
         src="https://www.youtube.com/embed/ckvvnmTStDA?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
@@ -26,7 +28,9 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
         style="border-radius: 10px; border: 2px solid #ccc; cursor: pointer;"
-        onclick="changeVideo('https://www.youtube.com/embed/ckvvnmTStDA?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1')">
+        onclick="changeVideo('https://www.youtube.com/embed/ckvvnmTStDA?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1',
+
+'https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?playlist=_wWr5oLxU0Y&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1')">
     </iframe>  
     <h6 style="margin: 0;">Gujarati | IMP જોડકાં જોડો</h6>
 </div>
