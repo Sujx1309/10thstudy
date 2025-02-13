@@ -1,123 +1,41 @@
    <script>
-        async function fetchYouTubeTitle(videoId) {
-            try {
-                let response = await fetch(`https://www.youtube.com/watch?v=${videoId}`);
-                let text = await response.text();
-                
-                // Extract title from YouTube page HTML
-                let match = text.match(/<title>(.*?)<\/title>/);
-                if (match) {
-                    return match[1].replace(" - YouTube", "").trim(); // Remove ' - YouTube' from the title
-                }
-                return "Unknown Title";
-            } catch (error) {
-                console.error("Error fetching title:", error);
-                return "Error Loading Title";
-            }
-        }
-
-        async function loadVideoTitles() {
-            let videoIds = ["_wWr5oLxU0Y", "F1Aa3avPNOI", "xjOTl32oq8o"];
-            
-            for (let videoId of videoIds) {
-                let title = await fetchYouTubeTitle(videoId);
-                document.querySelector(`[data-video-id="${videoId}"]`).innerText = title;
-            }
-        }
-
         function changeVideo(videoId, thumbnailElement) {
-            let mainVideo = document.getElementById("mainVideo");
-            let mainTitle = document.getElementById("mainVideoTitle");
+    let mainVideo = document.getElementById("mainVideo");
+    let mainTitle = document.getElementById("mainVideoTitle");
 
-            let currentVideoId = mainVideo.getAttribute("data-video-id");
-            let currentThumbnail = `https://img.youtube.com/vi/${currentVideoId}/hqdefault.jpg`;
+    let currentVideoId = mainVideo.getAttribute("data-video-id");
+    
+    // Swap the main video with the selected small video
+    mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+    mainVideo.setAttribute("data-video-id", videoId);
 
-            mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
-            mainVideo.setAttribute("data-video-id", videoId);
+    // Swap the main video title
+    mainTitle.innerText = document.getElementById(`title-${videoId}`).innerText;
 
-            // Update the main video title
-            document.getElementById(`title-${videoId}`).classList.add("bold-title");
-            document.getElementById(`title-${currentVideoId}`).classList.remove("bold-title");
-
-            mainTitle.innerText = document.getElementById(`title-${videoId}`).innerText;
-
-            thumbnailElement.src = currentThumbnail;
-            thumbnailElement.setAttribute("onclick", `changeVideo('${currentVideoId}', this)`);
-        }
-
-        function playMainVideo() {
-            let mainVideo = document.getElementById("mainVideo");
-            let videoId = mainVideo.getAttribute("data-video-id");
-
-            mainVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
-        }
-
-        window.onload = loadVideoTitles;
+    // Swap the thumbnails: Convert clicked thumbnail into a thumbnail of the previous main video
+    thumbnailElement.src = `https://img.youtube.com/vi/${currentVideoId}/hqdefault.jpg`;
+    thumbnailElement.setAttribute("onclick", `changeVideo('${currentVideoId}', this)`);
+}
     </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .video-container {
-            width: 100%;
-            max-width: 500px;
-            margin: auto;
-        }
-        .main-video {
-            border-radius: 10px;
-            border: 2px solid #ccc;
-            cursor: pointer;
-            width: 100%;
-        }
-        .video-title {
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-        .small-video-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .small-video-container img {
-            border-radius: 10px;
-            border: 2px solid #ccc;
-            cursor: pointer;
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-        }
-        .small-video-container p {
-            margin: 0;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .bold-title {
-            font-weight: bold;
-            color: #ff0000;
-        }
-    </style>
-
+    
 <div class="video-container">
     <!-- Main Video (Click to Play) -->
     <iframe 
         id="mainVideo"
         class="main-video"
         height="200" 
-        src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+        src="https://www.youtube-nocookie.com/embed/_wWr5oLxU0Y?autoplay=1&iv_load_policy=3&loop=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
         data-video-id="_wWr5oLxU0Y"
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
-        onclick="playMainVideo()">
+        allowfullscreen>
     </iframe>
     <p id="mainVideoTitle" class="video-title" data-video-id="_wWr5oLxU0Y">Loading...</p>
 
-    <!-- Small Video Thumbnails (Click to Swap) -->
+    <!-- Small Video Thumbnails -->
     <div class="small-video-container">
         <img 
+            id="thumb-F1Aa3avPNOI"
             src="https://img.youtube.com/vi/F1Aa3avPNOI/hqdefault.jpg" 
             onclick="changeVideo('F1Aa3avPNOI', this)">
         <p id="title-F1Aa3avPNOI" data-video-id="F1Aa3avPNOI">Loading...</p>
@@ -125,6 +43,7 @@
 
     <div class="small-video-container">
         <img 
+            id="thumb-xjOTl32oq8o"
             src="https://img.youtube.com/vi/xjOTl32oq8o/hqdefault.jpg" 
             onclick="changeVideo('xjOTl32oq8o', this)">
         <p id="title-xjOTl32oq8o" data-video-id="xjOTl32oq8o">Loading...</p>
